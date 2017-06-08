@@ -1,0 +1,177 @@
+# coding: utf-8
+
+# # Milestone Project 1
+# ## Congratulations on making it to your first milestone!
+# You've already learned a ton and are ready to work on a real project.
+# 
+# Your assignment: Create a Tic Tac Toe game. You are free to use any IDE you like.
+# 
+# Here are the requirements:
+# 
+# * 2 players should be able to play the game (both sitting at the same computer)
+# * The board should be printed out every time a player makes a move
+# * You should be able to accept input of the player position and then place a symbol on the board
+# 
+# Feel free to use Google to help you figure anything out (but don't just Google "Tic Tac Toe in Python" otherwise you won't learn anything!) Keep in mind that this project can take anywhere between several hours to several days.
+# 
+# There are 4 Jupyter Notebooks related to this assignment:
+# 
+# * This Assignment Notebook
+# * A "Walk-through Steps Workbook" Notebook
+# * A "Walk-through Solution" Notebook
+# * An "Advanced Solution" Notebook
+# 
+# I encourage you to just try to start the project on your own without referencing any of the notebooks. If you get stuck, check out the next lecture which is a text lecture with helpful hints and steps. If you're still stuck after that, then check out the walk-through Steps Workbook, which breaks up the project in steps for you to solve. Still stuck? Then check out the walk-through solution video for more help on approaching the project!
+
+# There are parts of this that will be a struggle...and that is good! I have complete faith that if you have made it this far through the course you have all the tools and knowledge to tackle this project. Remember, its totally open book, so take your time, do a little research, and remember:
+# 
+# ## HAVE FUN!
+
+# I will make it easy. Every position of the table will have a code e.g. A2, so the player write the position and given the turn will appear an X or an O. When a row it's completed, print who's the winner.
+# Steps will be:
+# 1- Built the table
+# 2- Allow the players to choose the position and print the election on the table.
+# 3- Identify when the game is over, when a row is made or when it's completely filled and print end game.
+# 4- Start over
+
+# 1- Built the table... choose the best option taking into account the need to put a X or a O.
+
+# In[95]:
+
+l1=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
+print('''  / A / B / C /
+----------------
+1 / %s / %s / %s / 
+----------------
+2 / %s / %s / %s /
+----------------
+3 / %s / %s / %s /''' % tuple(l1))
+
+
+# We have the board ready to be filled with the values people wants
+
+# In[5]:
+
+l2=('A1','A2','A3','B1','B2','B3','C1','C2','C3')
+def x_play(position,ls):
+    if position in l2:
+        if ls[l2.index(position)]==' ':
+            ls[l2.index(position)]='X'
+        else:
+            return(False)
+    else:
+        return(False)
+    
+def o_play(position,ls):
+    if position in l2:
+        if ls[l2.index(position)]==' ':
+            ls[l2.index(position)]='O'
+        else:
+            return(False)
+    else:
+        return(False)
+
+
+# In[6]:
+
+def match_end(ls):
+    if ls[0:3]==['X','X','X']:
+        return('X-winner')
+    elif ls[3:6]==['X','X','X']:
+        return('X-winner')
+    elif ls[6:9]==['X','X','X']:
+        return('X-winner')
+    elif [ls[0],ls[4],ls[8]]==['X','X','X']:
+        return('X-winner')
+    elif [ls[2],ls[4],ls[6]]==['X','X','X']:
+        return('X-winner')
+    elif ls[0:3]==['O','O','O']:
+        return('O-winner')
+    elif ls[3:6]==['O','O','O']:
+        return('O-winner')
+    elif ls[6:9]==['O','O','O']:
+        return('O-winner')
+    elif [ls[0],ls[4],ls[8]]==['O','O','O']:
+        return('O-winner')
+    elif [ls[2],ls[4],ls[6]]==['O','O','O']:
+        return('O-winner')
+    elif ' ' not in ls:
+        return('Draw')
+    else:
+        return(True)
+
+
+# In[ ]:
+
+from IPython.display import clear_output
+def tictactoe():
+    print("The game starts. When is the turn of X or O, the gamer should choose", 
+          "the position of his/her move between A1 to C3")
+    l1=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
+    print('''      / A / B / C /
+    ----------------
+    1 / %s / %s / %s / 
+    ----------------
+    2 / %s / %s / %s /
+    ----------------
+    3 / %s / %s / %s /''' % tuple(l1))
+    
+    #After showing the board, the game starts 
+    
+    criteria=True
+    while criteria:
+        x_posi=input('Move of X: ')
+        while x_play(x_posi,l1)==False:
+            var=input('Invalid Value, repeat: ')
+            x_posi=var.upper()
+        clear_output()
+        print('''          / A / B / C /
+        ----------------
+        1 / %s / %s / %s / 
+        ----------------
+        2 / %s / %s / %s /
+        ----------------
+        3 / %s / %s / %s /''' % tuple(l1))
+        if match_end(l1)==('X-winner' or 'O-winner' or 'Draw'):
+            criteria=False
+            break
+            
+        
+        o_posi=input('Move of O: ')
+        while o_play(o_posi,l1)==False:
+            var=input('Invalid Value, repeat: ')
+            o_posi=var.upper()
+        clear_output()
+        print('''          / A / B / C /
+        ----------------
+        1 / %s / %s / %s / 
+        ----------------
+        2 / %s / %s / %s /
+        ----------------
+        3 / %s / %s / %s /''' % tuple(l1))
+        if match_end(l1)==('X-winner' or 'O-winner' or 'Draw'):
+            criteria=False
+    print(match_end(l1))
+       
+    
+
+
+# Now, to prove the program
+
+# In[13]:
+
+tictactoe()
+
+
+# In[14]:
+
+print(x_posi)
+
+
+# #DONE!!!, assigment done!!! HAPPY for that
+# 
+
+# In[ ]:
+
+
+
